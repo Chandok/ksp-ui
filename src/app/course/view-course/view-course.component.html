@@ -1,0 +1,64 @@
+<p-card header="Course Details">
+    <p-message *ngIf="errorMessage" severity="error" [text]=errorMessage></p-message>
+    <div *ngIf="course">
+        <div class="p-fluid grid">
+            <div class="field col-12 md:col-6">
+                <span class="label">Id:</span>
+                <span>{{course.id}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">Course Name:</span>
+                <span>{{course.name}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">Enrollment Start Date:</span>
+                <span>{{course.enrollmentStartDate}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">Enrollment End Date:</span>
+                <span>{{course.enrollmentEndDate}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">Start Date:</span>
+                <span>{{course.startDate}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">End Date:</span>
+                <span>{{course.endDate}}</span>
+            </div>
+            <div class="field col-12 md:col-6">
+                <span class="label">Cost:</span>
+                <span>{{course.cost}}</span>
+            </div>
+            
+        </div>
+    </div>
+</p-card>
+<p></p>
+<p-card>
+    <button type="button" (click)="addClass()" pButton icon="pi pi-plus" label="Add Class"></button>
+    <p></p>
+    <p-table [value]="course.classes">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Class id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-courseClass>
+            <tr>
+                <td>{{courseClass.id}}</td>
+                <td>{{courseClass.name}}</td>
+                <td>
+                    <button (click)="editClass(courseClass.id)"  pButton icon="pi pi-pencil"></button>
+                    &nbsp;
+                    <p-confirmPopup></p-confirmPopup>
+                    <button (click)="confirmDeleteClass($event,courseClass.id)" class="p-button-danger" pButton
+                        icon="pi pi-trash"></button>
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

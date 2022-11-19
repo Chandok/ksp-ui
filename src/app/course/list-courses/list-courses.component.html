@@ -1,0 +1,112 @@
+<div class="card">
+    <p-table #dt1 [value]="courses" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-gridlines" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="['name']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        ID
+                        <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Name
+                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Enrollment Start Date
+                        <p-columnFilter type="date" field="enrollmentStartDate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Enrollment End Date
+                        <p-columnFilter type="date" field="enrollmentEndDate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Course Start Date
+                        <p-columnFilter type="date" field="startDate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Course End Date
+                        <p-columnFilter type="date" field="endDate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Cost
+                        <p-columnFilter type="numeric" field="cost" display="menu" currency="USD"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Actions
+                        <p-columnFilter type="numeric" field="cost" display="menu" currency="USD"></p-columnFilter>
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+            <tr>
+                <td>
+                    <a [routerLink]="['/viewCourse',course.id]">
+                        {{course.id}}
+                    </a>
+                </td>
+                <td>
+                    <a [routerLink]="['/viewCourse',course.id]">
+                        {{course.name}}
+                    </a>
+                </td>
+                <td>
+                    {{course.enrollmentStartDate}}
+                </td>
+                <td>
+                    {{course.enrollmentEndDate}}
+                </td>
+                <td>
+                    {{course.startDate}}
+                </td>
+                <td>
+                    {{course.endDate}}
+                </td>
+                <td>
+                    {{course.cost}}
+                </td>
+                <td>
+                    <button [routerLink]="['/editCourse',course.id]"  pButton icon="pi pi-pencil"></button>
+                    &nbsp;
+                    <p-confirmPopup></p-confirmPopup>
+                    <button (click)="confirmDelete($event,course.id)" class="p-button-danger" pButton icon="pi pi-trash"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">
+                    <ng-template *ngIf="!errorMessage">No Course found.</ng-template>
+                    <p-message *ngIf="errorMessage" severity="error" [text]=errorMessage></p-message>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

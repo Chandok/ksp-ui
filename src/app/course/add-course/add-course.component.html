@@ -1,0 +1,63 @@
+<div class="form">
+    <div class="p-fluid grid">
+        <div class="card">
+            <p-message *ngIf="errorMessage" severity="error" [text]=errorMessage ></p-message>
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="hidden" pInputText [(ngModel)]="course.id">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="course.name">
+                        <label for="float-input">Course Name</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="course.enrollmentStartDate" [showIcon]="true" inputId="icon"
+                        dateFormat="yy-mm-dd"></p-calendar>
+                        <label for="float-input">Enrollment Start Date</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="course.enrollmentEndDate" [showIcon]="true" inputId="icon"
+                        dateFormat="yy-mm-dd"></p-calendar>
+                        <label for="float-input">Enrollment End Date</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="course.startDate" [showIcon]="true" inputId="icon"
+                        dateFormat="yy-mm-dd"></p-calendar>
+                        <label for="float-input">Course Start Date</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="course.endDate" [showIcon]="true" inputId="icon" dateFormat="yy-mm-dd">
+                        </p-calendar>
+                        <label for="float-input">Course End Date</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="number" pInputText [(ngModel)]="course.cost">
+                        <label for="float-input">Cost</label>
+                    </span>
+                </div>
+
+                <!-- <div class="field col-12 md:col-4">
+                <input type="text" id="inputtext" pInputText class="ng-invalid ng-dirty" placeholder="InputText">
+            </div> -->
+            </div>
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-4">
+                    <button pButton pRipple type="button" label="Submit" (click)="onSubmit()"></button>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <button pButton pRipple type="button" label="Cancel" class="p-button-secondary"
+                        (click)="onCancel()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>   
